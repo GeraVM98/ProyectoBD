@@ -1,0 +1,197 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3560FCFC-11AA-4726-9F92-0832B9AF9615}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Proyecto</RootNamespace>
+    <AssemblyName>Proyecto</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>SIS-VET.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup />
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Buscar-Cliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Buscar-Cliente.Designer.cs">
+      <DependentUpon>Buscar-Cliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Buscar-Empleado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Buscar-Empleado.Designer.cs">
+      <DependentUpon>Buscar-Empleado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Buscar-Producto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Buscar-Producto.Designer.cs">
+      <DependentUpon>Buscar-Producto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Buscar-Venta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Buscar-Venta.Designer.cs">
+      <DependentUpon>Buscar-Venta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Insertar-Cliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Insertar-Cliente.Designer.cs">
+      <DependentUpon>Insertar-Cliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Insertar-Empleado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Insertar-Empleado.Designer.cs">
+      <DependentUpon>Insertar-Empleado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Insertar-Producto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Insertar-Producto.Designer.cs">
+      <DependentUpon>Insertar-Producto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Insertar-Venta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Insertar-Venta.Designer.cs">
+      <DependentUpon>Insertar-Venta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mostrar-Cliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mostrar-Cliente.Designer.cs">
+      <DependentUpon>Mostrar-Cliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mostrar-Empleados.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mostrar-Empleados.Designer.cs">
+      <DependentUpon>Mostrar-Empleados.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mostrar-Productos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mostrar-Productos.Designer.cs">
+      <DependentUpon>Mostrar-Productos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Buscar-Cliente.resx">
+      <DependentUpon>Buscar-Cliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Buscar-Empleado.resx">
+      <DependentUpon>Buscar-Empleado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Buscar-Producto.resx">
+      <DependentUpon>Buscar-Producto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Buscar-Venta.resx">
+      <DependentUpon>Buscar-Venta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Insertar-Cliente.resx">
+      <DependentUpon>Insertar-Cliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Insertar-Empleado.resx">
+      <DependentUpon>Insertar-Empleado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Insertar-Producto.resx">
+      <DependentUpon>Insertar-Producto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Insertar-Venta.resx">
+      <DependentUpon>Insertar-Venta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mostrar-Cliente.resx">
+      <DependentUpon>Mostrar-Cliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mostrar-Empleados.resx">
+      <DependentUpon>Mostrar-Empleados.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mostrar-Productos.resx">
+      <DependentUpon>Mostrar-Productos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="SIS-VET.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

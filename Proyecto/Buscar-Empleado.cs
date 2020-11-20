@@ -53,6 +53,5 @@ namespace Proyecto
                 MessageBox.Show("Empleado no encontrado");
             }
         }
-        
     }
 }

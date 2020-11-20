@@ -18,3 +18,24 @@ C:\Users\USUARIO\Documents\CUCEI\6to\Ing Software\Proyecto\Proyecto\obj\Debug\Pr
 C:\Users\USUARIO\Documents\CUCEI\6to\Ing Software\Proyecto\Proyecto\obj\Debug\Proyecto.Buscar_Producto.resources
 C:\Users\USUARIO\Documents\CUCEI\6to\Ing Software\Proyecto\Proyecto\obj\Debug\Proyecto.Insertar_Venta.resources
 C:\Users\USUARIO\Documents\CUCEI\6to\Ing Software\Proyecto\Proyecto\obj\Debug\Proyecto.Buscar_Venta.resources
+C:\Users\geraa\Documents\CUCEI\7mo\Administracion de BD\Proyecto\ProyectoBD\Proyecto\bin\Debug\Proyecto.exe.config
+C:\Users\geraa\Documents\CUCEI\7mo\Administracion de BD\Proyecto\ProyectoBD\Proyecto\obj\Debug\Proyecto.exe
+C:\Users\geraa\Documents\CUCEI\7mo\Administracion de BD\Proyecto\ProyectoBD\Proyecto\obj\Debug\Proyecto.pdb
+C:\Users\geraa\Documents\CUCEI\7mo\Administracion de BD\Proyecto\ProyectoBD\Proyecto\bin\Debug\Proyecto.exe
+C:\Users\geraa\Documents\CUCEI\7mo\Administracion de BD\Proyecto\ProyectoBD\Proyecto\bin\Debug\Proyecto.pdb
+C:\Users\geraa\Documents\CUCEI\7mo\Administracion de BD\Proyecto\ProyectoBD\Proyecto\obj\Debug\Proyecto.csprojResolveAssemblyReference.cache
+C:\Users\geraa\Documents\CUCEI\7mo\Administracion de BD\Proyecto\ProyectoBD\Proyecto\obj\Debug\Proyecto.Buscar_Cliente.resources
+C:\Users\geraa\Documents\CUCEI\7mo\Administracion de BD\Proyecto\ProyectoBD\Proyecto\obj\Debug\Proyecto.Buscar_Empleado.resources
+C:\Users\geraa\Documents\CUCEI\7mo\Administracion de BD\Proyecto\ProyectoBD\Proyecto\obj\Debug\Proyecto.Buscar_Producto.resources
+C:\Users\geraa\Documents\CUCEI\7mo\Administracion de BD\Proyecto\ProyectoBD\Proyecto\obj\Debug\Proyecto.Buscar_Venta.resources
+C:\Users\geraa\Documents\CUCEI\7mo\Administracion de BD\Proyecto\ProyectoBD\Proyecto\obj\Debug\Proyecto.Form1.resources
+C:\Users\geraa\Documents\CUCEI\7mo\Administracion de BD\Proyecto\ProyectoBD\Proyecto\obj\Debug\Proyecto.Insertar_Cliente.resources
+C:\Users\geraa\Documents\CUCEI\7mo\Administracion de BD\Proyecto\ProyectoBD\Proyecto\obj\Debug\Proyecto.Insertar_Empleado.resources
+C:\Users\geraa\Documents\CUCEI\7mo\Administracion de BD\Proyecto\ProyectoBD\Proyecto\obj\Debug\Proyecto.Insertar_Producto.resources
+C:\Users\geraa\Documents\CUCEI\7mo\Administracion de BD\Proyecto\ProyectoBD\Proyecto\obj\Debug\Proyecto.Insertar_Venta.resources
+C:\Users\geraa\Documents\CUCEI\7mo\Administracion de BD\Proyecto\ProyectoBD\Proyecto\obj\Debug\Proyecto.Login.resources
+C:\Users\geraa\Documents\CUCEI\7mo\Administracion de BD\Proyecto\ProyectoBD\Proyecto\obj\Debug\Proyecto.Mostrar_Cliente.resources
+C:\Users\geraa\Documents\CUCEI\7mo\Administracion de BD\Proyecto\ProyectoBD\Proyecto\obj\Debug\Proyecto.Mostrar_Empleados.resources
+C:\Users\geraa\Documents\CUCEI\7mo\Administracion de BD\Proyecto\ProyectoBD\Proyecto\obj\Debug\Proyecto.Mostrar_Productos.resources
+C:\Users\geraa\Documents\CUCEI\7mo\Administracion de BD\Proyecto\ProyectoBD\Proyecto\obj\Debug\Proyecto.Properties.Resources.resources
+C:\Users\geraa\Documents\CUCEI\7mo\Administracion de BD\Proyecto\ProyectoBD\Proyecto\obj\Debug\Proyecto.csproj.GenerateResource.Cache

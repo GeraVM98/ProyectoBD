@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.5.1
--- http://www.phpmyadmin.net
+-- version 4.8.4
+-- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 01-06-2020 a las 21:44:33
--- Versión del servidor: 5.7.11
--- Versión de PHP: 5.6.19
+-- Servidor: 127.0.0.1:3306
+-- Tiempo de generación: 20-11-2020 a las 19:16:15
+-- Versión del servidor: 5.7.24
+-- Versión de PHP: 7.3.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -28,11 +30,13 @@ USE `vet-soft`;
 -- Estructura de tabla para la tabla `bonos`
 --
 
-CREATE TABLE `bonos` (
-  `id_bono` int(10) NOT NULL,
+DROP TABLE IF EXISTS `bonos`;
+CREATE TABLE IF NOT EXISTS `bonos` (
+  `id_bono` int(10) NOT NULL AUTO_INCREMENT,
   `telefono` varchar(12) NOT NULL,
-  `status` int(1) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `status` int(1) NOT NULL,
+  PRIMARY KEY (`id_bono`)
+) ENGINE=MyISAM AUTO_INCREMENT=1074 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `bonos`
@@ -120,13 +124,15 @@ INSERT INTO `bonos` (`id_bono`, `telefono`, `status`) VALUES
 -- Estructura de tabla para la tabla `clientes`
 --
 
-CREATE TABLE `clientes` (
+DROP TABLE IF EXISTS `clientes`;
+CREATE TABLE IF NOT EXISTS `clientes` (
   `nombre` varchar(40) NOT NULL,
   `telefono` varchar(12) NOT NULL,
   `direccion` varchar(50) NOT NULL,
   `rfc` varchar(30) NOT NULL,
   `correo` varchar(30) NOT NULL,
-  `acumulado` float(10,2) NOT NULL DEFAULT '0.00'
+  `acumulado` float(10,2) NOT NULL DEFAULT '0.00',
+  PRIMARY KEY (`telefono`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
@@ -148,7 +154,8 @@ INSERT INTO `clientes` (`nombre`, `telefono`, `direccion`, `rfc`, `correo`, `acu
 -- Estructura de tabla para la tabla `detallev`
 --
 
-CREATE TABLE `detallev` (
+DROP TABLE IF EXISTS `detallev`;
+CREATE TABLE IF NOT EXISTS `detallev` (
   `folio` varchar(5) NOT NULL,
   `id producto` int(4) NOT NULL,
   `cantidad` int(3) NOT NULL,
@@ -205,8 +212,9 @@ INSERT INTO `detallev` (`folio`, `id producto`, `cantidad`, `precio`) VALUES
 -- Estructura de tabla para la tabla `empleados`
 --
 
-CREATE TABLE `empleados` (
-  `id_empleado` int(4) NOT NULL,
+DROP TABLE IF EXISTS `empleados`;
+CREATE TABLE IF NOT EXISTS `empleados` (
+  `id_empleado` int(4) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(40) NOT NULL,
   `telefono` varchar(12) NOT NULL,
   `direccion` varchar(50) NOT NULL,
@@ -214,18 +222,22 @@ CREATE TABLE `empleados` (
   `correo` varchar(40) NOT NULL,
   `puesto` varchar(30) NOT NULL,
   `supervisor` varchar(40) NOT NULL,
-  `salario` float(10,2) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `salario` float(10,2) NOT NULL,
+  `User` varchar(30) NOT NULL,
+  `Pass` varchar(50) NOT NULL,
+  PRIMARY KEY (`id_empleado`)
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `empleados`
 --
 
-INSERT INTO `empleados` (`id_empleado`, `nombre`, `telefono`, `direccion`, `rfc`, `correo`, `puesto`, `supervisor`, `salario`) VALUES
-(1, 'juan gonzalez', '3386954124', 'circuito loma 45', 'jjgg040508glz', 'juan@gmail.com', 'gerente', 'ninguno', 10000.00),
-(2, 'diego diaz', '3356842158', 'flor de liz 80', 'dddd060804diz', 'diego@gmail.com', 'veterinario', 'juan gonzales', 8000.00),
-(3, 'dario lopez', '3382489621', 'patria 480', 'ddll040609lpz', 'dario@gmail.com', 'cajero', 'juan gonzales', 4000.00),
-(4, 'Rodrigo Lopez', '3358969877', 'independencia 300', 'rrll050704lpz', 'rodrigo@gmail.com', 'cajero', 'juan gonzales', 4000.00);
+INSERT INTO `empleados` (`id_empleado`, `nombre`, `telefono`, `direccion`, `rfc`, `correo`, `puesto`, `supervisor`, `salario`, `User`, `Pass`) VALUES
+(1, 'juan gonzalez', '3386954124', 'circuito loma 45', 'jjgg040508glz', 'juan@gmail.com', 'gerente', 'ninguno', 10000.00, 'juang', '827ccb0eea8a706c4c34a16891f84e7b'),
+(2, 'diego diaz', '3356842158', 'flor de liz 80', 'dddd060804diz', 'diego@gmail.com', 'veterinario', 'juan gonzales', 8000.00, 'diego', '81dc9bdb52d04dc20036dbd8313ed055'),
+(3, 'dario lopez', '3382489621', 'patria 480', 'ddll040609lpz', 'dario@gmail.com', 'cajero', 'juan gonzales', 4000.00, 'dariol', '81dc9bdb52d04dc20036dbd8313ed055'),
+(4, 'Rodrigo Lopez', '3358969877', 'independencia 300', 'rrll050704lpz', 'rodrigo@gmail.com', 'cajero', 'juan gonzales', 4000.00, 'rodrigol', '81dc9bdb52d04dc20036dbd8313ed055'),
+(5, 'Juan Rodriguez', '3369858475', 'flor de liz 20', 'jjrr201095rdz', 'juan@gmail.com', 'veterinario', 'juan gonzales', 5000.00, 'juanr', '81dc9bdb52d04dc20036dbd8313ed055');
 
 -- --------------------------------------------------------
 
@@ -233,8 +245,9 @@ INSERT INTO `empleados` (`id_empleado`, `nombre`, `telefono`, `direccion`, `rfc`
 -- Estructura de tabla para la tabla `productos`
 --
 
-CREATE TABLE `productos` (
-  `id_producto` int(4) NOT NULL,
+DROP TABLE IF EXISTS `productos`;
+CREATE TABLE IF NOT EXISTS `productos` (
+  `id_producto` int(4) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(40) NOT NULL,
   `descripcion` varchar(50) NOT NULL,
   `marca` varchar(30) NOT NULL,
@@ -245,8 +258,9 @@ CREATE TABLE `productos` (
   `precioV` float(10,2) NOT NULL,
   `precioC` float(10,2) NOT NULL,
   `stock` int(4) NOT NULL,
-  `venta` int(2) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `venta` int(2) NOT NULL,
+  PRIMARY KEY (`id_producto`)
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `productos`
@@ -266,11 +280,13 @@ INSERT INTO `productos` (`id_producto`, `nombre`, `descripcion`, `marca`, `categ
 -- Estructura de tabla para la tabla `ventas`
 --
 
-CREATE TABLE `ventas` (
+DROP TABLE IF EXISTS `ventas`;
+CREATE TABLE IF NOT EXISTS `ventas` (
   `folio` varchar(5) NOT NULL,
   `fecha` date NOT NULL,
   `telefono` varchar(12) NOT NULL,
-  `id_empleado` int(4) NOT NULL
+  `id_empleado` int(4) NOT NULL,
+  PRIMARY KEY (`folio`) USING BTREE
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
@@ -304,60 +320,8 @@ INSERT INTO `ventas` (`folio`, `fecha`, `telefono`, `id_empleado`) VALUES
 ('24', '2020-06-01', '3041414141', 2),
 ('25', '2020-06-01', '3041414141', 2),
 ('26', '2020-06-01', '3040404040', 1);
+COMMIT;
 
---
--- Índices para tablas volcadas
---
-
---
--- Indices de la tabla `bonos`
---
-ALTER TABLE `bonos`
-  ADD PRIMARY KEY (`id_bono`);
-
---
--- Indices de la tabla `clientes`
---
-ALTER TABLE `clientes`
-  ADD PRIMARY KEY (`telefono`);
-
---
--- Indices de la tabla `empleados`
---
-ALTER TABLE `empleados`
-  ADD PRIMARY KEY (`id_empleado`);
-
---
--- Indices de la tabla `productos`
---
-ALTER TABLE `productos`
-  ADD PRIMARY KEY (`id_producto`);
-
---
--- Indices de la tabla `ventas`
---
-ALTER TABLE `ventas`
-  ADD PRIMARY KEY (`folio`) USING BTREE;
-
---
--- AUTO_INCREMENT de las tablas volcadas
---
-
---
--- AUTO_INCREMENT de la tabla `bonos`
---
-ALTER TABLE `bonos`
-  MODIFY `id_bono` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1074;
---
--- AUTO_INCREMENT de la tabla `empleados`
---
-ALTER TABLE `empleados`
-  MODIFY `id_empleado` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT de la tabla `productos`
---
-ALTER TABLE `productos`
-  MODIFY `id_producto` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

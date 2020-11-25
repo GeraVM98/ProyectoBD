@@ -15,8 +15,8 @@ namespace Proyecto
     {
 
         OdbcConnection conexionBD;
-        string sql;
-        OdbcCommand comandoSQl;
+        OdbcCommand comandoSQl = new OdbcCommand();
+        OdbcTransaction transaction = null;
 
         public Insertar_Producto()
         {
@@ -46,13 +46,35 @@ namespace Proyecto
 
         private void button1_Click(object sender, EventArgs e)
         {
-            sql = "INSERT INTO `productos`(`nombre`, `descripcion`, `marca`, `categoria`, `ubicacion`, `cant_max`, `cant_min`, `precioV`, `precioC`, `stock`, `venta`) VALUES ('"
-                  + textBox1.Text + "','" + textBox5.Text + "','" + textBox4.Text + "','" + textBox8.Text + "','" 
-                  + textBox7.Text + "','" + textBox3.Text + "','" + textBox9.Text + "','" + textBox2.Text + "','" 
+            comandoSQl.Connection = conexionBD;
+            try
+            {
+                transaction = conexionBD.BeginTransaction();
+                comandoSQl.Connection = conexionBD;
+                comandoSQl.Transaction = transaction;
+
+                comandoSQl.CommandText =
+                    "INSERT INTO `productos`(`nombre`, `descripcion`, `marca`, `categoria`, `ubicacion`, `cant_max`, `cant_min`, `precioV`, `precioC`, `stock`, `venta`) VALUES ('"
+                  + textBox1.Text + "','" + textBox5.Text + "','" + textBox4.Text + "','" + textBox8.Text + "','"
+                  + textBox7.Text + "','" + textBox3.Text + "','" + textBox9.Text + "','" + textBox2.Text + "','"
                   + textBox10.Text + "','" + textBox6.Text + "','" + comboBox1.SelectedIndex + "')";
-            comandoSQl = new OdbcCommand(sql, conexionBD);
-            comandoSQl.ExecuteNonQuery();
-            MessageBox.Show("Producto agregado");
+                comandoSQl.ExecuteNonQuery();
+
+                transaction.Commit();
+                MessageBox.Show("Producto agregado");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                try
+                {
+                    transaction.Rollback();
+                }
+                catch
+                {
+                }
+            }
+            
         }
     }
 }

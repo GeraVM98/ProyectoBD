@@ -298,7 +298,6 @@
             this.MinimizeBox = false;
             this.Name = "Insertar_Empleado";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Load += new System.EventHandler(this.Insertar_Empleado_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

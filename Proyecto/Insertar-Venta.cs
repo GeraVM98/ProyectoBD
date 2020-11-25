@@ -15,6 +15,8 @@ namespace Proyecto
     {
 
         OdbcConnection conexionBD;
+        OdbcCommand comandoSQlT = new OdbcCommand();
+        OdbcTransaction transaction = null;
         string sql;
         OdbcCommand comandoSQl;
         bool encontrado = false;
@@ -143,72 +145,93 @@ namespace Proyecto
                 {
                     if (textBox5.Text != "")
                     {
-                        sql = "INSERT INTO `ventas`(`folio`, `fecha`, `telefono`, `id_empleado`) VALUES ('"
-                              + textBox4.Text + "','" + textBox3.Text + "','" + textBox1.Text + "','" + textBox12.Text + "')";
-                        comandoSQl = new OdbcCommand(sql, conexionBD);
-                        comandoSQl.ExecuteNonQuery();
-
-                        for (int i = 0; i < listView1.Items.Count; i++)
+                        comandoSQlT.Connection = conexionBD;
+                        try
                         {
-                            if (listView1.Items[i].SubItems[0].Text != "")
-                            {
-                                sql = "INSERT INTO `detallev`(`folio`, `id producto`, `cantidad`, `precio`) VALUES ('"
-                                       + textBox4.Text + "','" + listView1.Items[i].SubItems[0].Text + "','"
-                                       + listView1.Items[i].SubItems[2].Text + "','" + listView1.Items[i].SubItems[3].Text + "')";
-                                comandoSQl = new OdbcCommand(sql, conexionBD);
-                                comandoSQl.ExecuteNonQuery();
+                            transaction = conexionBD.BeginTransaction();
+                            comandoSQlT.Connection = conexionBD;
+                            comandoSQlT.Transaction = transaction;
 
-                                if (Convert.ToInt32(listView1.Items[i].SubItems[0].Text) < 1000)
+                            comandoSQlT.CommandText =
+                                "INSERT INTO `ventas`(`folio`, `fecha`, `telefono`, `id_empleado`) VALUES ('"
+                              + textBox4.Text + "','" + textBox3.Text + "','" + textBox1.Text + "','" + textBox12.Text + "')";
+                            comandoSQlT.ExecuteNonQuery();
+
+                            for (int i = 0; i < listView1.Items.Count; i++)
+                            {
+                                if (listView1.Items[i].SubItems[0].Text != "")
                                 {
-                                    sql = "UPDATE `productos` SET `stock`=`stock`-" + Convert.ToInt32(listView1.Items[i].SubItems[2].Text)
-                                           + " WHERE `id_producto` = '" + listView1.Items[i].SubItems[0].Text + "'";
-                                    comandoSQl = new OdbcCommand(sql, conexionBD);
-                                    comandoSQl.ExecuteNonQuery();
-                                }
-                                else
-                                {
-                                    sql = "UPDATE `bonos` SET `status` ='1' WHERE `id_bono` = '" + listView1.Items[i].SubItems[0].Text + "'";
-                                    comandoSQl = new OdbcCommand(sql, conexionBD);
-                                    comandoSQl.ExecuteNonQuery();
+                                    comandoSQlT.CommandText =
+                                        "INSERT INTO `detallev`(`folio`, `id producto`, `cantidad`, `precio`) VALUES ('"
+                                           + textBox4.Text + "','" + listView1.Items[i].SubItems[0].Text + "','"
+                                           + listView1.Items[i].SubItems[2].Text + "','" + listView1.Items[i].SubItems[3].Text + "')";
+                                    comandoSQlT.ExecuteNonQuery();
+
+                                    if (Convert.ToInt32(listView1.Items[i].SubItems[0].Text) < 1000)
+                                    {
+                                        comandoSQlT.CommandText =
+                                        "UPDATE `productos` SET `stock`=`stock`-" + Convert.ToInt32(listView1.Items[i].SubItems[2].Text)
+                                               + " WHERE `id_producto` = '" + listView1.Items[i].SubItems[0].Text + "'";
+                                        comandoSQlT.ExecuteNonQuery();
+                                    }
+                                    else
+                                    {
+                                        comandoSQlT.CommandText =
+                                        "UPDATE `bonos` SET `status` ='1' WHERE `id_bono` = '" + listView1.Items[i].SubItems[0].Text + "'";
+                                        comandoSQlT.ExecuteNonQuery();
+                                    }
                                 }
                             }
+
+                            string telefono = textBox1.Text;
+                            double acumulado;
+                            bool acumula = false;
+                            comandoSQlT.CommandText =
+                                        "SELECT * FROM `clientes` WHERE `telefono` = '" + telefono + "'";
+                            OdbcDataReader resultadosSQL = comandoSQlT.ExecuteReader();
+                            resultadosSQL.Read();
+                            acumulado = resultadosSQL.GetFloat(5);
+                            acumulado = acumulado + total;
+                            resultadosSQL.Close();
+
+                            while (acumulado >= 1000)
+                            {
+                                acumulado = acumulado - 1000;
+                                comandoSQlT.CommandText =
+                                        "UPDATE `clientes` SET `acumulado` ='" + acumulado + "' WHERE `telefono` = '" + telefono + "'";
+                                comandoSQlT.ExecuteNonQuery();
+
+                                comandoSQlT.CommandText =
+                                        "INSERT INTO `bonos`(`telefono`, `status`) VALUES ('" + telefono + "', '0')";
+                                comandoSQlT.ExecuteNonQuery();
+
+                                acumula = true;
+                            }
+                            if (acumula)
+                            {
+                                MessageBox.Show("El cliente obtuvo un bono");
+                            }
+                            else
+                            {
+                                comandoSQlT.CommandText =
+                                        "UPDATE `clientes` SET `acumulado` ='" + acumulado + "' WHERE `telefono` = '" + telefono + "'";
+                                comandoSQlT.ExecuteNonQuery();
+                            }
+                            
+                            transaction.Commit();
+                            MessageBox.Show("Venta agregada");
                         }
-
-                        string telefono = textBox1.Text;
-                        double acumulado;
-                        bool acumula = false;
-                        sql = "SELECT * FROM `clientes` WHERE `telefono` = '" + telefono + "'";
-                        comandoSQl = new OdbcCommand(sql, conexionBD);
-                        OdbcDataReader resultadosSQL = comandoSQl.ExecuteReader();
-                        resultadosSQL.Read();
-                        acumulado = resultadosSQL.GetFloat(5);
-                        acumulado = acumulado + total;
-
-                        while (acumulado >= 1000)
+                        catch (Exception ex)
                         {
-                            acumulado = acumulado - 1000;
-                            sql = "UPDATE `clientes` SET `acumulado` ='" + acumulado + "' WHERE `telefono` = '" + telefono + "'";
-                            comandoSQl = new OdbcCommand(sql, conexionBD);
-                            comandoSQl.ExecuteNonQuery();
-
-                            sql = "INSERT INTO `bonos`(`telefono`, `status`) VALUES ('" + telefono + "', '0')";
-                            comandoSQl = new OdbcCommand(sql, conexionBD);
-                            comandoSQl.ExecuteNonQuery();
-
-                            acumula = true;
+                            Console.WriteLine(ex.Message);
+                            try
+                            {
+                                transaction.Rollback();
+                            }
+                            catch
+                            {
+                            }
                         }
-                        if (acumula)
-                        {
-                            MessageBox.Show("El cliente obtuvo un bono");
-                        }
-                        else
-                        {
-                            sql = "UPDATE `clientes` SET `acumulado` ='" + acumulado + "' WHERE `telefono` = '" + telefono + "'";
-                            comandoSQl = new OdbcCommand(sql, conexionBD);
-                            comandoSQl.ExecuteNonQuery();
-                        }
-
-                        MessageBox.Show("Venta agregada");
                     }
                     else
                     {

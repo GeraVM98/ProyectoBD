@@ -15,8 +15,9 @@ namespace Proyecto
     {
 
         OdbcConnection conexionBD;
-        string sql;
-        OdbcCommand comandoSQl;
+        OdbcCommand comandoSQl = new OdbcCommand();
+        OdbcTransaction transaction = null;
+
 
         public Insertar_Cliente()
         {
@@ -41,12 +42,33 @@ namespace Proyecto
 
         private void button1_Click(object sender, EventArgs e)
         {
-            sql = "INSERT INTO `clientes`(`nombre`, `telefono`, `direccion`, `rfc`, `correo`) VALUES ('"
-                  +textBox1.Text+ "','" +textBox5.Text+ "','" + textBox4.Text+ "','" + textBox3.Text+ "','" 
+            comandoSQl.Connection = conexionBD;
+            try
+            {
+                transaction = conexionBD.BeginTransaction();
+                comandoSQl.Connection = conexionBD;
+                comandoSQl.Transaction = transaction;
+                
+                comandoSQl.CommandText =
+                    "INSERT INTO `clientes`(`nombre`, `telefono`, `direccion`, `rfc`, `correo`) VALUES ('"
+                  + textBox1.Text + "','" + textBox5.Text + "','" + textBox4.Text + "','" + textBox3.Text + "','"
                   + textBox2.Text + "')";
-            comandoSQl = new OdbcCommand(sql, conexionBD);
-            comandoSQl.ExecuteNonQuery();
-            MessageBox.Show("Cliente agregado");
+                comandoSQl.ExecuteNonQuery();
+                
+                transaction.Commit();
+                MessageBox.Show("Cliente agregado");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                try
+                {
+                    transaction.Rollback();
+                }
+                catch
+                {
+                }
+            }
         }
     }
 }

@@ -16,8 +16,8 @@ namespace Proyecto
     {
 
         OdbcConnection conexionBD;
-        string sql;
-        OdbcCommand comandoSQl;
+        OdbcCommand comandoSQl = new OdbcCommand();
+        OdbcTransaction transaction = null;
 
         public Insertar_Empleado()
         {
@@ -45,19 +45,40 @@ namespace Proyecto
 
         private void button1_Click(object sender, EventArgs e)
         {
-
             var rand = new Random();
             string pass = "";
             for (int ctr = 0; ctr <= 4; ctr++)
                 pass += rand.Next(10).ToString();
             string md5 = GetMD5(pass);
-            sql = "INSERT INTO `empleados`(`nombre`, `telefono`, `direccion`, `rfc`, `correo`, `puesto`, `supervisor`, `salario`,`User`, `Pass`) VALUES ('"
-                  + textBox1.Text + "','" + textBox5.Text + "','" + textBox4.Text + "','" + textBox3.Text + "','" + textBox2.Text + "','" 
+
+            comandoSQl.Connection = conexionBD;
+            try
+            {
+                transaction = conexionBD.BeginTransaction();
+                comandoSQl.Connection = conexionBD;
+                comandoSQl.Transaction = transaction;
+
+                comandoSQl.CommandText =
+                    "INSERT INTO `empleados`(`nombre`, `telefono`, `direccion`, `rfc`, `correo`, `puesto`, `supervisor`, `salario`,`User`, `Pass`) VALUES ('"
+                  + textBox1.Text + "','" + textBox5.Text + "','" + textBox4.Text + "','" + textBox3.Text + "','" + textBox2.Text + "','"
                   + textBox6.Text + "','" + textBox8.Text + "','" + textBox7.Text + "','" + textBox9.Text + "','" + md5 + "')";
-            comandoSQl = new OdbcCommand(sql, conexionBD);
-            comandoSQl.ExecuteNonQuery();
-            MessageBox.Show("Empleado agregado");
-            MessageBox.Show("Password: " + pass);
+                comandoSQl.ExecuteNonQuery();
+
+                transaction.Commit();
+                MessageBox.Show("Empleado agregado");
+                MessageBox.Show("Password: " + pass);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                try
+                {
+                    transaction.Rollback();
+                }
+                catch
+                {
+                }
+            }
         }
 
         public static string GetMD5(string str)
@@ -70,10 +91,6 @@ namespace Proyecto
             for (int i = 0; i < stream.Length; i++) sb.AppendFormat("{0:x2}", stream[i]);
             return sb.ToString();
         }
-
-        private void Insertar_Empleado_Load(object sender, EventArgs e)
-        {
-
-        }
+        
     }
 }

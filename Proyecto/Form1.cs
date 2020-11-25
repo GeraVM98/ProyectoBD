@@ -17,6 +17,8 @@ namespace Proyecto
     {
 
         public OdbcConnection conexionBD;
+        public OdbcCommand command = new OdbcCommand();
+        
 
         public Form1()
         {
@@ -25,6 +27,8 @@ namespace Proyecto
                    "Server=localhost;" +
                    "Port=3306;Database=vet-soft;" +
                    "User=root;Password=;Option=3;");
+
+            command.Connection = conexionBD;
 
             try
             {
@@ -139,6 +143,7 @@ namespace Proyecto
                     }
                 }
             }
+            MessageBox.Show("Base de datos respladada");
         }
         private void recuperarToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -157,6 +162,7 @@ namespace Proyecto
                     }
                 }
             }
+            MessageBox.Show("Base de datos recuperada");
         }
                 
     }

@@ -45,6 +45,9 @@
             this.ventasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.registrarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.consultarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.respladarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.recuperarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,7 +58,8 @@
             this.clientesToolStripMenuItem,
             this.productosToolStripMenuItem,
             this.empleadosToolStripMenuItem,
-            this.ventasToolStripMenuItem});
+            this.ventasToolStripMenuItem,
+            this.bDToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1182, 28);
@@ -178,6 +182,29 @@
             this.consultarToolStripMenuItem.Text = "Consultar";
             this.consultarToolStripMenuItem.Click += new System.EventHandler(this.consultarToolStripMenuItem_Click);
             // 
+            // bDToolStripMenuItem
+            // 
+            this.bDToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.respladarToolStripMenuItem,
+            this.recuperarToolStripMenuItem});
+            this.bDToolStripMenuItem.Name = "bDToolStripMenuItem";
+            this.bDToolStripMenuItem.Size = new System.Drawing.Size(41, 24);
+            this.bDToolStripMenuItem.Text = "BD";
+            // 
+            // respladarToolStripMenuItem
+            // 
+            this.respladarToolStripMenuItem.Name = "respladarToolStripMenuItem";
+            this.respladarToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.respladarToolStripMenuItem.Text = "Respladar";
+            this.respladarToolStripMenuItem.Click += new System.EventHandler(this.respladarToolStripMenuItem_Click);
+            // 
+            // recuperarToolStripMenuItem
+            // 
+            this.recuperarToolStripMenuItem.Name = "recuperarToolStripMenuItem";
+            this.recuperarToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.recuperarToolStripMenuItem.Text = "Recuperar";
+            this.recuperarToolStripMenuItem.Click += new System.EventHandler(this.recuperarToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -218,6 +245,9 @@
         private System.Windows.Forms.ToolStripMenuItem ventasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem registrarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem consultarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem bDToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem respladarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem recuperarToolStripMenuItem;
     }
 }
 

@@ -1,8 +1,10 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.Odbc;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -119,5 +121,43 @@ namespace Proyecto
             Dialog.ShowDialog(this);
             Dialog.Dispose();
         }
+
+        private void respladarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string constring = "server=localhost;user=root;pwd=;database=vet-soft;";
+            string file = "backup.sql";
+            using (MySqlConnection conn = new MySqlConnection(constring))
+            {
+                using (MySqlCommand cmd = new MySqlCommand())
+                {
+                    using (MySqlBackup mb = new MySqlBackup(cmd))
+                    {
+                        cmd.Connection = conn;
+                        conn.Open();
+                        mb.ExportToFile(file);
+                        conn.Close();
+                    }
+                }
+            }
+        }
+        private void recuperarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string constring = "server=localhost;user=root;pwd=;database=vet-soft;";
+            string file = "backup.sql";
+            using (MySqlConnection conn = new MySqlConnection(constring))
+            {
+                using (MySqlCommand cmd = new MySqlCommand())
+                {
+                    using (MySqlBackup mb = new MySqlBackup(cmd))
+                    {
+                        cmd.Connection = conn;
+                        conn.Open();
+                        mb.ImportFromFile(file);
+                        conn.Close();
+                    }
+                }
+            }
+        }
+                
     }
 }
